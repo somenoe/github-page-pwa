@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GitHub page as PWA template</title>
   <link rel="canonical" href="https://codepo8.github.io/github-page-pwa/" />
-  <link rel="manifest" href="/github-page-pwa/manifest.webmanifest">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -21,12 +20,33 @@
 
   <script src="js/showLocation.js"></script>
 
+  <p id="status">now can run api on 'localhost' (for dev)</p>
   <script>
-    if (navigator.serviceWorker) {
-      navigator.serviceWorker.register(
-        '/github-page-pwa/sw.js',
-        { scope: '/github-page-pwa/' }
-      )
+    // for test in localhost
+    if (window.location.hostname === 'localhost') {
+      // creat element link
+      let link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = '/manifest.json';
+      document.head.appendChild(link);
+      if (navigator.serviceWorker) {
+        navigator.serviceWorker.register(
+          './sw-localhost.js'
+        )
+      }
+    }
+    else {
+      if (navigator.serviceWorker) {
+        // creat element link
+        let link = document.createElement('link');
+        link.rel = 'manifest';
+        link.href = '/github-page-pwa/manifest.webmanifest';
+        document.head.appendChild(link);
+        navigator.serviceWorker.register(
+          '/github-page-pwa/sw.js',
+          { scope: '/github-page-pwa/' }
+        )
+      }
     }
   </script>
 </body>
