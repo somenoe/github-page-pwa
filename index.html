@@ -7,20 +7,30 @@
   <title>GitHub page as PWA template</title>
   <link rel="canonical" href="https://codepo8.github.io/github-page-pwa/" />
   <link rel="stylesheet" href="css/styles.css">
+
 </head>
 
 <body>
 
-
   <p>Click the button to get your coordinates.</p>
 
-  <button onclick="getLocation()">Try It</button>
+  <button onclick="start()">Start</button>
 
-  <p id="demo"></p>
+  <div id="setting" style="display: none;">
+    <p id="warningMessage">
+      !!! We send your location to server every [ 1 seconds ]
+    </p>
+    <p>Change frequency time: </p>
+    <button onclick="setDelayTime('1 second')">1 second</button>
+    <button onclick="setDelayTime('1 minute')">1 minute</button>
+    <button onclick="setDelayTime('30 minute')">30 minute</button>
+  </div>
 
+  <p id="GeoLocation"></p>
+
+  <script src="js/delay.js"></script>
   <script src="js/showLocation.js"></script>
 
-  <p id="status">which is i should clear if i want to to update github pages?(for dev)</p>
   <script>
     // for test in localhost
     if (window.location.hostname === 'localhost') {
@@ -51,5 +61,11 @@
   </script>
 </body>
 
+<footer>
+  <p><b>FORTEST</b>
+    <br>: clear Cookies
+    <br>: if it not reload
+  </p>
+</footer>
 
 </html>
